@@ -2,7 +2,7 @@
  * 侧边栏左下角入口：与「用量账本」同槽，点击弹出站点真实账本。
  */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client'
+import type { Context as ClientContext } from '@deepseek-ai/cordis'
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar/client'
 import type { PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import {
