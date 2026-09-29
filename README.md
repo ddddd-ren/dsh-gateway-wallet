@@ -45,6 +45,19 @@ dsh plugin --profile web update dsh-gateway-wallet
 dsh plugin --profile web remove dsh-gateway-wallet
 ```
 
+## 版本记录
+
+此前没有单独的变更文件，从这一版开始记录。
+
+### 0.1.1
+
+适配 DeepSeek Harness `0.2.0-rc.2`。
+
+- `peerDependencies` 原先写成 `>=0.0.1-rc.1 <0.1.0 || >=0.1.0-rc.1 <0.2.0-0`，两项都落空：`@deepseek-ai/cordis` 早已是 4.x，而客户端包的实际版本是 `0.2.0-rc.2`。宿主因此判定插件与 `dsh 0.2.0-rc.2` 不兼容并拒绝加载。
+- `@deepseek-ai/cordis` 改为 `^4.0.0`（覆盖 0.1.5 宿主用的 4.0.2 与 0.2.0 宿主用的 4.0.4）。
+- 四个 `@deepseek-ai/dsh-client-*` 改为 `^0.1.5-rc.1 || ^0.2.0-rc.1`。`0.2.0-rc.2` 带预发布标记：按 npm 默认规则（市场检查用的模式）只有比较器与它同属一个 `major.minor.patch` 元组时才算匹配，所以 `^0.1.0-rc.6` 够不到 `0.1.5-rc.2`，`>=0.1.5-rc.2 <0.3.0` 也够不到 `0.2.0-rc.2`；宿主自身的判定另开了 `includePrerelease`，而显式 OR 在两种模式下都成立。
+- 侧边栏三个图标改从 0.2.0 的字重命名取值（`IconApiOutlineRegular` / `IconRefreshOutlineRegular` / `IconCloseOutlineRegular`），并保留 0.1.x 旧名（`…14` / `…16`）的运行时回退。旧名在 0.2.0 中已全部移除，直接引用会拿到 `undefined` 组件。
+
 ## 支持的账本
 
 | 站点程序 | 接口 | 说明 |
